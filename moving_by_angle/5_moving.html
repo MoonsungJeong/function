@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			
+			*{padding: 0; margin:0;}
+			
+			canvas{
+				background: #eee; display:block; margin:0 auto;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="600" height="400"></canvas>
+		<script>
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+		var x=180;
+		var y=180;
+		var degree=0;
+		var rightPressed = false;
+		var leftPressed = false;
+		document.addEventListener("keydown", keyDownHandler, false);
+		document.addEventListener("keyup", keyUpHandler, false);
+		
+		function keyUpHandler(e){
+			if(e.keyCode == 39){
+				rightPressed = false;
+			}
+			else if(e.keyCode == 37){
+				leftPressed = false;
+			}
+		}
+		function keyDownHandler(e){
+			if(e.keyCode == 39){
+				rightPressed = true;
+			}
+			else if(e.keyCode == 37){
+				leftPressed = true;
+			}
+		}
+		function control(){
+			if(rightPressed){
+				degree+=2;
+			}
+			else if(leftPressed){
+				degree-=2;
+			}
+		}
+		
+		function toRadians(deg){
+			return deg * (Math.PI/180);
+		}
+		function drawLocation(){
+				var a = Math.sin(toRadians(degree));
+				var b = Math.cos(toRadians(degree));
+				var c = Math.sqrt(Math.pow(a,2)+Math.pow(b,2));
+					
+				ctx.font = "16px Arial";
+				ctx.fillStyle = "#0095DD";
+				ctx.fillText("x,y,r location ", 370,18);
+				ctx.fillText("x: " + a.toFixed(3), 370,38);
+				ctx.fillText("y: " + b.toFixed(3), 370,58);
+				ctx.fillText("r: " + c.toFixed(3), 370,78);
+				ctx.fillText("Degree: " + degree, 370,98);	
+		}
+		function drawBorder(){
+			ctx.beginPath();
+			ctx.moveTo(0,0);
+			ctx.lineTo(0,360);
+			ctx.moveTo(360,0);
+			ctx.lineTo(360,360);
+			ctx.moveTo(180,0);
+			ctx.lineTo(180,360);
+			
+			ctx.moveTo(0,0);
+			ctx.moveTo(360,0);
+			ctx.moveTo(0,180);
+			ctx.lineTo(360,180);
+			ctx.moveTo(0,360);
+			ctx.lineTo(360,360);
+			ctx.stroke();
+		}
+		
+		function draw(){
+			ctx.clearRect(0,0,canvas.width, canvas.height);
+			if(degree > 360 || degree < -360){degree=0;}
+			drawBorder();
+			drawLocation();
+			control();
+			 
+			ctx.beginPath();
+			ctx.arc(x,y,5, 0, Math.PI*2, false);
+			//ctx.arc(180+(90*Math.sin(toRadians(degree))),180-(90*Math.cos(toRadians(degree))),5, 0, Math.PI*2, false);
+			ctx.fillStyle = "#0095DD";
+			ctx.fill();
+			ctx.stroke();
+			x+=Math.cos(toRadians(degree));
+			y+=Math.sin(toRadians(degree));
+			
+		}
+		
+		setInterval(draw,10);
+		</script>
+	</body>
+</html> 

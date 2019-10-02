@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			
+			*{padding: 0; margin:0;}
+			
+			canvas{
+				background: #eee; display:block; margin:0 auto;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="360" height="360"></canvas>
+		<p>skfjekfsj</p>
+		<script>
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+		var degree=0;
+		
+		function toRadians(deg){
+			return deg * (Math.PI/180);
+		}
+		function draw(){
+			ctx.clearRect(0,0,canvas.width, canvas.height);
+			if(degree>360){degree=0;}
+			ctx.beginPath();
+			ctx.moveTo(0,0);
+			ctx.lineTo(0,360);
+			ctx.moveTo(360,0);
+			ctx.lineTo(360,360);
+			ctx.moveTo(180,0);
+			ctx.lineTo(180,360);
+			
+			ctx.moveTo(0,0);
+			ctx.moveTo(360,0);
+			ctx.moveTo(0,180);
+			ctx.lineTo(360,180);
+			ctx.moveTo(0,360);
+			ctx.lineTo(360,360);
+			ctx.stroke();
+			 
+			ctx.beginPath();
+			ctx.arc(0+degree,180-(90*Math.sin(toRadians(degree))),2, 0, Math.PI*2, false);
+			ctx.fillStyle = "#0095DD";
+			ctx.fill();
+			ctx.stroke();
+			degree++;
+		}
+		
+		setInterval(draw,10);
+		</script>
+	</body>
+</html> 
