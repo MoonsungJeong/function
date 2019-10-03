@@ -17,7 +17,13 @@
 		<script>
 		var canvas = document.getElementById("myCanvas");
 		var ctx = canvas.getContext("2d");
-		var degree=0;
+		var x = 180;
+		var y = 180;
+		var angle;
+		
+		var mouseX,mouseY;
+		var display = 360;
+		document.addEventListener("mousemove", mouseMoveHandler, false);
 		
 		function toRadians(deg){
 			return deg * (Math.PI/180);
@@ -25,21 +31,26 @@
 		function toDegree(rad){
 			return rad * (180/Math.PI);
 		}
-		function drawLocation(){
-				var a = Math.sin(toRadians(degree));
-				var b = Math.cos(toRadians(degree));
-				var c = Math.sqrt(Math.pow(a,2)+Math.pow(b,2));
-					
-				ctx.font = "16px Arial";
-				ctx.fillStyle = "#0095DD";
-				ctx.fillText("x,y,r location ", 370,18);
-				ctx.fillText("x: " + a.toFixed(2), 370,38);
-				ctx.fillText("y: " + b.toFixed(2), 370,58);
-				ctx.fillText("r: " + c.toFixed(2), 370,78);
-				ctx.fillText("Degree: " + degree, 370,98);
-				
-			
+		function mouseMoveHandler(e){
+			var relativeX = e.clientX - canvas.offsetLeft;
+			var relativeY = e.clientY - canvas.offsetTop;
+			if(relativeX > 0 && relativeX < display && relativeY > 0 && relativeY < display){
+				mouseX = relativeX;
+				mouseY = relativeY;
+				angle = toDegree(Math.atan2(mouseY-y,mouseX-x));
+				if(angle < 0){angle+=360;}
+			}
 		}
+		function drawMouseLocation(){
+			ctx.font = "16px Arial";
+			ctx.fillStyle = "#0095DD";
+			ctx.fillText("MouseXY location ", 370,38);
+			ctx.fillText("mouseX: " + mouseX, 370,58);
+			ctx.fillText("mouseY: " + mouseY, 370,78);	
+			ctx.fillText("Angle(CenterToMouse): " +angle, 370,98);
+		}
+		
+		
 		function drawBorder(){
 			ctx.beginPath();
 			ctx.moveTo(0,0);
@@ -60,22 +71,18 @@
 		
 		function draw(){
 			ctx.clearRect(0,0,canvas.width, canvas.height);
-			if(degree > 360 || degree < -360){degree=0;}
+			
 			drawBorder();
-			drawLocation();
-			 
+			drawMouseLocation();
+			
 			ctx.beginPath();
-			ctx.arc(180,180,5, 0, Math.PI*2, false);
-			//ctx.arc(180,180-(90*Math.cos(toRadians(degree))),5, 0, Math.PI*2, false);
-			//ctx.arc(180+(90*Math.sin(toRadians(degree))),180,5, 0, Math.PI*2, false);
-			ctx.arc(180+(90*Math.cos(toRadians(degree))),180+(90*Math.sin(toRadians(degree))),5, 0, Math.PI*2, false);
+			ctx.arc(x,y,5, 0, Math.PI*2, false);
 			ctx.fillStyle = "#0095DD";
 			ctx.fill();
 			ctx.stroke();
-			degree++;
 		}
 		
-		setInterval(draw,20);
+		setInterval(draw,10);
 		</script>
 	</body>
 </html> 

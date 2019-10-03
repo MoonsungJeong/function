@@ -20,10 +20,34 @@
 		var x=180;
 		var y=180;
 		var degree=0;
+		var angle=null;
 		var rightPressed = false;
 		var leftPressed = false;
+		var mouseX,mouseY;
+		var display = 360;
+		document.addEventListener("mousemove", mouseMoveHandler, false);
 		document.addEventListener("keydown", keyDownHandler, false);
 		document.addEventListener("keyup", keyUpHandler, false);
+		
+		function mouseMoveHandler(e){
+			var relativeX = e.clientX - canvas.offsetLeft;
+			var relativeY = e.clientY - canvas.offsetTop;
+			if(relativeX > 0 && relativeX < display && relativeY > 0 && relativeY < display){
+				mouseX = relativeX;
+				mouseY = relativeY;
+				angle = toDegree(Math.atan2(mouseY-y,mouseX-x));
+				if(angle < 0){angle+=360;}
+				degree = angle;
+			}
+		}
+		function drawMouseLocation(){
+			ctx.font = "16px Arial";
+			ctx.fillStyle = "#0095DD";
+			ctx.fillText("MouseXY location ", 370,138);
+			ctx.fillText("mouseX: " + mouseX, 370,158);
+			ctx.fillText("mouseY: " + mouseY, 370,178);	
+			ctx.fillText("Angle(CenterToMouse): " + angle, 370,198);
+		}
 		
 		function keyUpHandler(e){
 			if(e.keyCode == 39){
@@ -57,13 +81,13 @@
 			return rad * (180/Math.PI);
 		}
 		function drawLocation(){
-				var a = Math.cos(toRadians(degree));
-				var b = Math.sin(toRadians(degree));
+				var a = Math.sin(toRadians(degree));
+				var b = Math.cos(toRadians(degree));
 				var c = Math.sqrt(Math.pow(a,2)+Math.pow(b,2));
 					
 				ctx.font = "16px Arial";
 				ctx.fillStyle = "#0095DD";
-				ctx.fillText("x,y,r location ", 370,18);
+				ctx.fillText("dx,dy,a location ", 370,18);
 				ctx.fillText("dx: " + a.toFixed(3), 370,38);
 				ctx.fillText("dy: " + b.toFixed(3), 370,58);
 				ctx.fillText("a: " + c.toFixed(3), 370,78);
@@ -94,6 +118,7 @@
 			drawBorder();
 			drawLocation();
 			control();
+			drawMouseLocation();
 			 
 			ctx.beginPath();
 			ctx.arc(x,y,5, 0, Math.PI*2, false);

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			
+			*{padding: 0; margin:0;}
+			
+			canvas{
+				background: #eee; display:block; margin:0 auto;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="600" height="400"></canvas>
+		<script>
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+		
+		var mouseX,mouseY;
+		var display = 360;
+		document.addEventListener("mousemove", mouseMoveHandler, false);
+		
+		function mouseMoveHandler(e){
+			var relativeX = e.clientX - canvas.offsetLeft;
+			var relativeY = e.clientY - canvas.offsetTop;
+			if(relativeX > 0 && relativeX < display && relativeY > 0 && relativeY < display){
+				mouseX = relativeX;
+				mouseY = relativeY;
+			}
+		}
+		function drawMouseLocation(){
+			ctx.font = "16px Arial";
+			ctx.fillStyle = "#0095DD";
+			ctx.fillText("MouseXY location ", 370,38);
+			ctx.fillText("mouseX: " + mouseX, 370,58);
+			ctx.fillText("mouseY: " + mouseY, 370,78);	
+		
+		}
+		
+		
+		function drawBorder(){
+			ctx.beginPath();
+			ctx.moveTo(0,0);
+			ctx.lineTo(0,360);
+			ctx.moveTo(360,0);
+			ctx.lineTo(360,360);
+			ctx.moveTo(180,0);
+			ctx.lineTo(180,360);
+			
+			ctx.moveTo(0,0);
+			ctx.moveTo(360,0);
+			ctx.moveTo(0,180);
+			ctx.lineTo(360,180);
+			ctx.moveTo(0,360);
+			ctx.lineTo(360,360);
+			ctx.stroke();
+		}
+		
+		function draw(){
+			ctx.clearRect(0,0,canvas.width, canvas.height);
+			drawBorder();
+			drawMouseLocation();
+		}
+		
+		setInterval(draw,10);
+		</script>
+	</body>
+</html> 
