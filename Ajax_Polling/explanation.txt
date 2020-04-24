@@ -1,0 +1,25 @@
+Ajax Polling (chating example)
+
+
+There are 6 files in this project.
+
+There is a server file("server.js")
+
+There are 3 type of client files("index.html", "script.js", "style.css")
+
+There are "chrome.txt" and "this file".
+
+
+You have to use command in "chrome.txt" to open chrome browser, If you run this project in localhost.
+
+Probably you don't need to use it, if you run this project in public server and independant client.
+
+
+
+"index.html" is client html file
+
+"sciprt.js" has actual code of Ajax connection from Browser
+
+"style.css" is css file
+
+"server.js" is NodeJs server file
