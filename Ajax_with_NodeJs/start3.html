@@ -1,0 +1,27 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <button class="ajaxsend">ajaxsend</button>
+        <div>
+            RESPONSE: <span class="result"></span>
+        </div>
+        
+        <script>
+            var el = document.querySelector('.ajaxsend');
+            
+            // Ajax (Get request(/) with Parameter(id=time) )
+            el.addEventListener('click',function(){
+                var oReq = new XMLHttpRequest();
+                oReq.open("GET","http://192.168.1.108:3000/?id=time");  // Ajax connect
+                oReq.send();                                            // Ajax request send!
+                oReq.onreadystatechange = function(){                   // Ajax result from Server
+                    if(oReq.readyState === 4 && oReq.status === 200){
+                        document.querySelector('.result').innerHTML = oReq.responseText;
+                    }
+                }
+               
+            })
+        </script>
+    </body>
+</html>

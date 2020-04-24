@@ -1,0 +1,28 @@
+Ajax with NodeJs
+
+
+There are 8 files in this project.
+
+There is a server file("server.js") with extra file("time.js")
+
+There are 4 type of client files("start1","start2","start3","start4".html)
+
+There are "chrome.txt" and "this file".
+
+
+You have to use command in "chrome.txt" to open chrome browser, If you run this project in localhost.
+
+Probably you don't need to use it, if you run this project in public server and independant client.
+
+
+
+start1.html(First file) is about Ajax Get request from browser and Response from Server
+
+start2.html(Second file) is about Ajax Post request from browser and Response from Server
+
+start3.html(Third file) is about Ajax Get request with Parameter from browser and time Response(time.js) from Server
+
+start4.html(Fourth file) is about Ajax Post request with JSON from browser and Response from Server
+
+
+

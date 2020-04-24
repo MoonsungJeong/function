@@ -1,0 +1,30 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <button class="ajaxsend">ajaxsend</button>
+        <div>
+            RESPONSE: <span class="result"></span>
+        </div>
+        
+        <script>
+            var el = document.querySelector('.ajaxsend');
+            
+            // Ajax (POST request(/) with JSON({ key : value}) )
+            el.addEventListener('click',function(){ 
+                var oReq = new XMLHttpRequest();
+                oReq.open("POST","http://192.168.1.108:3000/");             // Ajax connect
+                oReq.setRequestHeader('Content-Type', 'application/json');  // Ajax request header
+                oReq.send(JSON.stringify({                                  // Ajax send with JSON
+                    'email' : 'cat@gmail.com'
+                }));
+                oReq.onreadystatechange = function(){                       // Ajax result from Server
+                    if(oReq.readyState === 4 && oReq.status === 200){
+                        document.querySelector('.result').innerHTML = oReq.responseText;
+                    }
+                }
+                
+            })
+        </script>
+    </body>
+</html>
