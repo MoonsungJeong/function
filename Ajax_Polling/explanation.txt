@@ -23,3 +23,11 @@ Probably you don't need to use it, if you run this project in public server and 
 "style.css" is css file
 
 "server.js" is NodeJs server file
+
+-----------------------------------------------------------------------------------------------------------
+Version 2
+
+I used "res.header("Access-Control-Allow-Origin", "*")" to fix CORS(Cross-origin resource sharing) policy.
+
+you don't need to use command in "chrome.txt" to open chrome browser anymore
+
