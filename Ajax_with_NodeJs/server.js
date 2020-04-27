@@ -6,6 +6,11 @@ var time = require('./time.js');
 var arr = [];
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
+app.use(function(req, res, next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 // Ajax Post request
 app.post('/', function(req,res){
@@ -23,7 +28,7 @@ app.get('/', function(req,res){
     var _url = req.url;
     var _time = time.SHOW();
     var queryData = url.parse(_url, true).query;
-
+     
     if(queryData.id === undefined){                             // Get request without Parameter
         console.log("GET REQUEST(/) from Brower!");
         res.send("<h4>안녕하세요</h4>")

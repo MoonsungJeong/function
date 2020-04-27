@@ -25,4 +25,12 @@ start3.html(Third file) is about Ajax Get request with Parameter from browser an
 start4.html(Fourth file) is about Ajax Post request with JSON from browser and Response from Server
 
 
+-------------------------------------------------------------------------------------------------------------------
+
+Version 2
+
+I used "res.header("Access-Control-Allow-Origin", "*")" to fix CORS(Cross-origin resource sharing) policy.
+
+you don't need to use command in "chrome.txt" to open chrome browser anymore
+
 
