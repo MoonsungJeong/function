@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            .modalDialog {
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background: rgba(0,0,0,0.8);
+                z-index: 99999;
+                opacity:0;
+                transition: opacity 400ms ease-in;
+                pointer-events: none;
+            }
+            .modalDialog:target {
+	        	opacity:1;
+                pointer-events: auto;
+	        }
+            .modalDialog > div {
+                width: 400px;
+                position: relative;
+                margin: 10% auto;
+                padding: 5px 20px 13px 20px;
+                border-radius: 10px;
+                background: #fff;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <a href="#openModal">Open Modal</a>
+        
+        <div id="openModal" class="modalDialog">
+            <div>
+                <a href="#close" title="Close" class="close">X</a>
+                <h2>Modal Box</h2>
+                <p>Modal test</p>
+                <p>How to make modal window</p>
+            </div>
+        </div>
+    </body>
+</html>
