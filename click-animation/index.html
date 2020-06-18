@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            .nav{
+                border:1px solid black;
+                float: left;
+            }
+            .btn{
+                width: 50px;
+                height:50px;
+            }
+            .board{
+                border:1px solid blue;
+                height:350px;
+            }
+            .box{
+                color:red;
+                display:block;
+                font-size:2rem;
+                margin:50px auto;
+                width:200px;
+                text-align: center;
+            }
+            <
+        </style>
+
+    </head>
+    <body>
+    
+            <div class="nav">
+                <button class="btn" type="button" onclick="animation('top')">Top</button><br>
+                <button class="btn" type="button" onclick="animation('bottom')">Bottom</button><br>
+                <button class="btn" type="button" onclick="animation('left')">Left</button><br>
+                <button class="btn" type="button" onclick="animation('right')">Right</button><br>
+                <button class="btn" type="button" onclick="animation('fade_in')">Fade In</button><br>
+                <button class="btn" type="button" onclick="animation('zoom')">Zoom</button><br>
+                <button class="btn" type="button" onclick="animation('spin')">Spin</button><br>
+            </div>
+
+            <div class="board">
+                <div class="box w3-animate-top"     id="top">top Animation!</div>
+                <div class="box w3-animate-bottom"  id="bottom">bottom Animation!</div>
+                <div class="box w3-animate-left"    id="left">left Animation!</div>
+                <div class="box w3-animate-right"   id="right">right Animation!</div>
+                <div class="box w3-animate-opacity" id="fade_in">fade Animation!</div>
+                <div class="box w3-animate-zoom"    id="zoom">zoomAnimation!</div>
+                <div class="box w3-animate-spin"    id="spin">spin Animation!</div>
+                <div class="box"                    id="normal">Animation!</div>
+            </div>
+        
+        <script>
+            animation("normal");
+            
+            function animation(id){
+                var el = document.getElementsByClassName("box");
+                for(var i=0; i < el.length; i++){
+                    el[i].style.display="none";
+                }
+                document.getElementById(id).style.display = "block";  
+            }
+            
+        </script>
+    </body>
+</html>

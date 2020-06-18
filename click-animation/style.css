@@ -1,0 +1,58 @@
+.w3-animate-top{
+    position:relative;
+    animation:animatetop 0.4s
+}
+@keyframes animatetop{
+    from{top:-300px;opacity:0} 
+    to{top:0;opacity:1}
+}
+.w3-animate-bottom{
+    position:relative;
+    animation:animatebottom 0.4s
+}
+@keyframes animatebottom{
+    from{bottom:-300px;opacity:0} 
+    to{bottom:0;opacity:1}
+}
+.w3-animate-left{
+    position:relative;
+    animation:animateleft 0.4s
+}
+@keyframes animateleft{
+    from{left:-300px;opacity:0} 
+    to{left:0;opacity:1}
+}
+.w3-animate-right{
+    position:relative;
+    animation:animateright 0.4s
+}
+@keyframes animateright{
+    from{right:-300px;opacity:0} 
+    to{right:0;opacity:1}
+}
+.w3-animate-opacity{
+    position:relative;
+    animation:animatefade 1s
+}
+@keyframes animatefade{
+    from{opacity:0} 
+    to{opacity:1}
+}
+.w3-animate-zoom{
+    position:relative;
+    animation:animatezoom 0.4s
+}
+@keyframes animatezoom{
+    from{font-size:0; opacity:0} 
+    to{font-size:2rem; opacity:1}
+}
+.w3-animate-spin{
+    position: relative;
+    animation:animatespin 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@keyframes animatespin{
+    from{transform:rotate(0deg)} 
+    to{transform:rotate(360deg)}
+}
