@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+            ul{
+                list-style-type: none;
+            }
+            li{
+                border:1px solid #dddddd;
+                padding:10px;
+                margin-left:-20px;
+                margin-right:20px;
+            }
+            label{
+                margin:30px;
+            }
+            .dlt-btn{
+                float: right;
+            }
+            .input-box{
+                border:1px solid #dddddd;
+                display:flex;
+                justify-content: center;
+                padding:20px;
+            }
+            .list-container{
+            }
+            .done{
+                text-decoration: line-through;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>ToDo List</h2>
+        <div class="input-box">
+            <input type="text" id="new-txt" value="">
+            <button id="new-btn">Add</button>
+        </div>
+        <div class="list-container">
+            <ul class="list-box">
+            </ul>
+        </div>
+        <script>
+            
+            
+            var lastNum = 1;    // lastNum is used in newAdd() to make 'id' attribute of <li>
+            var new_btn = document.getElementById("new-btn");
+            new_btn.addEventListener("click",_newAdd,false);    // button to put new data into list
+            document.addEventListener("keyup",keyUpHandler,false); // enter event for multiple todolist(future).
+          
+            function keyUpHandler(e){
+                if(e.keyCode === 13){
+                    var el = document.activeElement;
+                    var txt = document.getElementById("new-txt");
+                    if(el === txt){
+                        if(txt.value !== ""){
+                            _newAdd();
+                        }
+                    }    
+                }
+            }
+            function _newAdd(e){
+                // <li><input type="checkbox" id="1"><label for="1">2222</label><input type=button class="dlt-btn" value="x"></li>
+                var txt = document.getElementById("new-txt");
+                if(txt.value === ""){
+                    return false;
+                }
+                var ul = document.querySelector(".list-box");
+                var li = document.createElement("li");
+                var check_box = document.createElement("input");
+                var txt_label = document.createElement("label");
+                var dlt_button = document.createElement("input");
+                check_box.setAttribute("type","checkbox");
+                check_box.setAttribute("id",lastNum);
+                txt_label.setAttribute("for", lastNum);
+                txt_label.innerHTML=txt.value;
+                dlt_button.setAttribute("type","button");
+                dlt_button.setAttribute("class","dlt-btn");
+                dlt_button.setAttribute("value","x");
+                li.appendChild(check_box);
+                li.appendChild(txt_label);
+                li.appendChild(dlt_button);
+                ul.appendChild(li);
+                _eventsAdd(lastNum);
+                txt.value="";
+                txt.focus();
+                lastNum++;
+            }
+            function _eventsAdd(Num){
+                var check_box = document.getElementById(Num);
+                var txt_label = document.getElementById(Num).nextElementSibling;
+                var dlt_button = document.getElementById(Num).nextElementSibling.nextElementSibling;
+                    
+                check_box.addEventListener("click", _checkBox, false);
+                dlt_button.addEventListener("click", _dltBtn, false);
+            }
+            function _checkBox(e){
+                var check_box = e.target;
+                var txt_label = e.target.nextSibling;
+                if(check_box.checked === true){
+                    txt_label.classList.add("done");
+                }else{
+                    txt_label.classList.remove("done");
+                }
+            }
+            function _dltBtn(e){
+                var check_box = e.target.previousElementSibling.previousElementSibling;
+                var dlt_button = e.target;
+                
+                check_box.removeEventListener("click", _checkBox, false);
+                dlt_button.removeEventListener("click", _dltBtn, false);
+                dlt_button.parentElement.remove();
+            }
+        </script>
+    </body>
+</html>
