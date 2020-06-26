@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <style>
+            .tab{
+                background-color: #cccccc;
+            }
+            .tab_btn{
+                background-color: inherit;
+                padding:20px 20px;
+                border:none;
+                cursor:pointer;
+            }
+            .tab_btn:hover{
+                background-color:#ababab;
+            }
+            .tab_btn.active{
+                background-color:#ababab;
+            }
+            .content{
+                border:3px solid #cccccc;
+                border-top:none;
+                padding: 10px 10px;
+                display:none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="tab">
+            <button class="tab_btn" name="seoul">Seoul</button>
+            <button class="tab_btn" name="sydney">Sydney</button>
+            <button class="tab_btn" name="washington">Washington</button>
+        </div>
+        <div class="content" id="seoul">
+            <h3>Seoul</h3>
+            <p>Seoul is capital of Korea</p>
+        </div>
+        <div class="content" id="sydney">
+            <h3>Sydney</h3>
+            <p>Sydney is the biggest city of Australia</p>
+        </div>
+        <div class="content" id="washington">
+            <h3>Washington</h3>
+            <p>Whitehouse is in Washington</p>
+        </div>
+        <script>
+            var btn = document.querySelectorAll(".tab_btn");
+            btn.forEach(function(item){
+                item.addEventListener("click",showContent,false);
+            })
+            function showContent(e){
+                var btn = document.querySelectorAll(".tab_btn");
+                btn.forEach(function(item){
+                    item.classList.remove("active");
+                })
+                e.target.classList.add("active");
+
+                var contents = document.querySelectorAll(".content");
+                var box = document.getElementById(e.target.name);
+                contents.forEach(function(item){
+                    item.style.display="none";
+                });
+                box.style.display="block";
+            }
+        </script>
+    </body>
+</html>

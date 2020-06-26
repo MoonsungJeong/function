@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <style>
+            .btn{
+                background-color: lawngreen;
+                width: 100px;
+                height:100px;
+                transition: 1s;
+            }
+            .btn:hover{
+                background-color: red;
+                width: 300px;
+                height:300px;
+            }
+            .btn_2{
+                background-color: lawngreen;
+                width: 100px;
+                height:100px;
+                opacity: 0.3;
+                transition: 1s;
+            }
+            .active{
+                background-color: red;
+                width: 100px;
+                height:100px;
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="btn">
+            <p>BUTTON</p>
+        </div>
+        <div class="btn_2">
+            <p>BUTTON</p>
+        </div>
+        <script>
+            var el =document.querySelector(".btn_2");
+            el.addEventListener("click",change,false);
+            function change(e){
+                e.target.classList.add("active");
+            }
+        </script>
+    </body>
+</html>
