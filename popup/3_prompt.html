@@ -1,0 +1,18 @@
+<html>
+    <body>
+        <button onclick="popup3()">Click</button>
+        <p id="box"></p>
+        <script>
+            function popup3(){
+                var txt;
+                var person = prompt("Please enter your name", "Omok");
+                if(person == null || person == ""){
+                    txt = "User cancelled the prompt";
+                }else{
+                    txt = "Hello "+person+"! How are you today?";
+                }
+                document.getElementById("box").innerHTML = txt;
+            }
+        </script>
+    </body>
+</html>

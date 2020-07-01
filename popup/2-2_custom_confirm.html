@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            #modal{
+                display:none; position: relative; z-index: 1; }
+            #modal_content{ 
+                display:block; margin: 10px auto; height:200px; width:300px; border:1px solid blue; background-color:rgba(183, 221, 221, 0.8); }
+            h3,div>p{
+                display:block; width:200px; text-align: center; margin: 30px auto; }
+            div>button{
+                position: relative; top:auto; left:37%; }
+            #modal_layer{
+                position: fixed; top:0; left:0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: -1; }
+        </style>
+    </head>
+    <body>
+        <button id="btn_1">Default Confirm</button>
+        <button id="btn_2">Custom Confirm</button>
+        <p id="box"></p>
+
+        <div id="modal">
+            <div id="modal_content">
+                <h3>Custom Confirm</h3>
+                <button id="yes">Yes</button>
+                <button id="no">No</button>
+            </div>
+            <div id="modal_layer"></div>
+        </div>
+        
+        <script>
+            var btn_1 = document.getElementById("btn_1");
+            var btn_2 = document.getElementById("btn_2");
+            btn_1.addEventListener("click", defaultConfirm, false);
+            btn_2.addEventListener("click", customConfirm, false);
+
+            function defaultConfirm(){
+                var txt;
+                if(confirm("Confirm Box!")){
+                    txt = "OK!!";
+                }else{
+                    txt = "Cancel!!";
+                }
+                document.getElementById("box").innerHTML = txt;
+            }
+            function customConfirm(){
+                var yes = document.getElementById("yes");
+                var no = document.getElementById("no");
+                document.getElementById("modal").style.display="block";
+                yes.addEventListener("click",function(){
+                    return customConfirm_exit(true);
+                });
+                no.addEventListener("click",function(){
+                    return customConfirm_exit(false);
+                });
+            }
+            function customConfirm_exit(bool){
+                if(bool){
+                    txt = "OK!!";
+                }else{
+                    txt = "Cancel!!";
+                }
+                document.getElementById("box").innerHTML = txt;
+                document.getElementById("modal").style.display="none";
+            }
+        </script>
+    </body>
+</html>

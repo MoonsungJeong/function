@@ -1,0 +1,17 @@
+<html>
+    <body>
+        <button onclick="popup2()">Click</button>
+        <p id="box"></p>
+        <script>
+            function popup2(){
+                var txt;
+                if(confirm("Confirm Box!")){
+                    txt = "OK!!";
+                }else{
+                    txt = "Cancel!!";
+                }
+                document.getElementById("box").innerHTML = txt;
+            }
+        </script>
+    </body>
+</html>
