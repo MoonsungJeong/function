@@ -21,7 +21,7 @@ var chatManager = new function(){
     // Periodic Ajax connection to server with num(to get lastest chat content)
     this.proc = function()
     {
-        oReq.open("GET", "http://192.168.1.108:3000?num="+finalNum);
+        oReq.open("GET", "http://192.168.1.223:3000?num="+finalNum);
         oReq.send();
     }
 
