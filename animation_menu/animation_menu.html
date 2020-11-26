@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <button class="btn_click">CLick</button>
+        <div class="menu">
+            <div class="menuScreen">
+            </div>
+            <div class="menuList">
+                <ul class="list_box">
+                    <li class="list">Total Board</li>
+                    <li class="list">Free Board</li>
+                    <li class="list">Info Board</li>
+                </ul>
+                <div class="btn_box">
+                    <button>Login</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            var el = document.querySelector(".btn_click");
+            el.addEventListener("click",function(){
+                menupop();
+            });
+            function menupop(){
+                var menu = document.querySelector(".menuList");
+                menu.style.display = "block";
+                if(!menu.classList.contains("animate-right")){
+                    menu.classList.remove("animate-left");
+                    menu.classList.add("animate-right"); 
+                    return;
+                }else{
+                    menu.classList.remove("animate-right");
+                    menu.classList.add("animate-left"); 
+                    return;
+                }
+            }
+        </script>
+    </body>
+</html>
